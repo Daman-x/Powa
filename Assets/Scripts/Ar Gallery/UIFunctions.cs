@@ -43,4 +43,6 @@ public class UIFunctions : MonoBehaviour
 
     #endregion
 
+    // todo  add other ui functions from another script
+
 }
