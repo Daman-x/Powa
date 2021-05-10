@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.Rendering;
 
+// This script is used to provide light estimations ------------------------------NOT TO BE CHANGED
+
 [RequireComponent(typeof(Light))]
 public class LightEstimationHD : MonoBehaviour
 {

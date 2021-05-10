@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// THIS SCRIPT IS NOT IN USE FOR NOW -------------------------------------------------------------------------------------------------
 public class MenuController : MonoBehaviour
 {
     public GameObject[] panels;
@@ -11,11 +12,7 @@ public class MenuController : MonoBehaviour
     public Sprite[] dots;
     public GameObject skip , nextslide;
 
-    private void Start()
-    {
-        panels[i].SetActive(true);
-        PanelNo(i);
-    }
+  
 
     public void OnStartedClick()
     {
