@@ -8,11 +8,14 @@ using UnityEngine.UI;
 public class ScaleImage : MonoBehaviour
 {
 
-   
+    [SerializeField]
+    AddingItems addingItems; // refer to adding items
+
     private void OnTriggerEnter2D(Collider2D collision) // if images is selected
     { 
         collision.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-        collision.gameObject.GetComponent<Image>().color = new Color32(255,255,255,255);         
+        collision.gameObject.GetComponent<Image>().color = new Color32(255,255,255,255);
+        addingItems.selectedImages(collision.gameObject.GetComponent<Image>());     // selected image transfer to adding items selectedimage funtion
     }
 
     private void OnTriggerExit2D(Collider2D collision) // if not

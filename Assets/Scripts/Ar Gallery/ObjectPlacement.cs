@@ -38,14 +38,12 @@ public class ObjectPlacement : MonoBehaviour
         get { return Object; }
     }
 
-
     private void Awake() // connect to all the components needed in the scene
     {
         raycastManager = GetComponent<ARRaycastManager>();
         planeManager = GetComponent<ARPlaneManager>();
     }
-
-    void Update() // run evey frame
+    void Update() // run every frame
     {
 
         Ray ray = Camera.current.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // shoot ray from the center of the screen

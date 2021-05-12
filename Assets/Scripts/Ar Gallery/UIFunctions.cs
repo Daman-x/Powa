@@ -12,7 +12,10 @@ public class UIFunctions : MonoBehaviour
     Text txt;         // toast txt
     [SerializeField]
     GameObject PlaceBtn; // invisble btn on screen to place object
-
+    [SerializeField]
+    Image ImgOnLike;
+    [SerializeField]
+    Sprite ImgToChange;
 
     private ObjectPlacement objectPlacement; // objectplacement class reference
     private GameObject Canvas;
@@ -90,6 +93,12 @@ public class UIFunctions : MonoBehaviour
 
     }
 
+    public void OnLikeClicked() // if like btn is clicked
+    {
+        ImgOnLike.sprite = ImgToChange;
+
+        // store that on server
+    }
 
 
     void showToast(string text,int duration) // show toast at bottom of the scene currently not visible
