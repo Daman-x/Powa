@@ -22,4 +22,10 @@ namespace Assets.Scripts.Libs.Models
         public Registry reg;
     }
 
+    [Serializable]
+    public class ItemData
+    {
+        public Item[] data;
+    }
+
 }
