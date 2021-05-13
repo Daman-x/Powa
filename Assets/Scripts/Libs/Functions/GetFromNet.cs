@@ -8,6 +8,8 @@ using System.IO;
 using UnityEngine.Networking;
 using System.Net;
 
+using Assets.Scripts.Libs.Data;
+
 namespace Assets.Scripts.Libs.Functions
 {
     public class GetFromNet
@@ -44,11 +46,19 @@ namespace Assets.Scripts.Libs.Functions
 
         public static string GetApiData(string uri)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(AppData.apiDomain + uri);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string jsonResponse = reader.ReadToEnd();
             return jsonResponse;
         }
+
+        //public static async string GetTextFromNet(string uri)
+        //{
+        //    var webClient = new System.Net.WebClient();
+        //    string url = AppData.apiDomain + uri;
+        //    string source = await webClient.DownloadStringTaskAsync(url);
+        //    return source;
+        //}
     }
 }

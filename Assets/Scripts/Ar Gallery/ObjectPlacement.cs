@@ -6,6 +6,15 @@ using UnityEngine.XR.ARSubsystems;
 
 // THIS SCRIPT DETECT PLANES AND SPAWNS THE OBJECTS IN REAL WORLD
 
+
+using System;
+using System.IO;
+
+using Assets.Scripts.Libs.Data;
+using Assets.Scripts.Libs.Models;
+using Assets.Scripts.Libs.Functions;
+using Assets.Scripts.Libs.AppManager;
+
 [RequireComponent(typeof(ARRaycastManager))]
 [RequireComponent(typeof(ARPlaneManager))]
 public class ObjectPlacement : MonoBehaviour
@@ -21,6 +30,30 @@ public class ObjectPlacement : MonoBehaviour
     bool Placed = false;  // if object placed
     GameObject Object; // reference to the main object for object to relocate
     bool RemoveClicked = true; // if remove btn is clicked
+
+    void Start()
+    {
+        InitApp _app = new InitApp();
+        _app.init();
+
+        //for (int i = 0; i < AppData._registries.Length; i++)
+        //{
+        //    Debug.Log("rrrrrr   " + AppData._registries[i].name + " - " + AppData._registries[i].symbol);
+        //}
+
+        Debug.Log("-------------------------ITEMS------------------------");
+
+        for (int i = 0; i < AppData._items.Length; i++)
+        {
+            Debug.Log(AppData._items[i].name + " - " + AppData._items[i].user.name);
+        }
+
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    StartCoroutine(GetFromNet.downloadImage("https://storageapi.fleek.co/citizenfinance-team-bucket/cifipowa.app/" + data1.data[i].metaUrl + "-image", imageToUpdate[i]));
+        //    Debug.Log("i = " + i);
+        //}
+    }
 
     public bool placed  // get set for placed
     {

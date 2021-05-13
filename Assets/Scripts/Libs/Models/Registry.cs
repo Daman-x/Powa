@@ -15,4 +15,10 @@ namespace Assets.Scripts.Libs.Models
         public string url;
     }
 
+
+    [Serializable]
+    public class RegistryData
+    {
+        public Registry[] data;
+    }
 }
