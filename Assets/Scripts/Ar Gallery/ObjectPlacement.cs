@@ -79,24 +79,24 @@ public class ObjectPlacement : MonoBehaviour
     void Update() // run every frame
     {
 
-        //Ray ray = Camera.current.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // shoot ray from the center of the screen
-        //if (raycastManager.Raycast(ray, Hits, TrackableType.PlaneWithinPolygon) && Placed == false && RemoveClicked == true)  // if hit any ar plane
-        //{
+        Ray ray = Camera.current.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // shoot ray from the center of the screen
+        if (raycastManager.Raycast(ray, Hits, TrackableType.PlaneWithinPolygon) && Placed == false && RemoveClicked == true)  // if hit any ar plane
+        {
 
-        //    if (Object == null)
-        //    {
-        //        Object = Instantiate(Marker, Hits[0].pose.position, Hits[0].pose.rotation);
+            if (Object == null)
+            {
+                Object = Instantiate(Marker, Hits[0].pose.position, Hits[0].pose.rotation);
 
-        //        if (Object.GetComponent<ARAnchor>() == null)
-        //            Object.AddComponent<ARAnchor>();
-        //    }
-        //    else
-        //    {
-        //        Destroy(Object.GetComponent<ARAnchor>());
-        //        Object.transform.position = Hits[0].pose.position;
-        //        Object.AddComponent<ARAnchor>();
-        //    }
-        //}
+                if (Object.GetComponent<ARAnchor>() == null)
+                    Object.AddComponent<ARAnchor>();
+            }
+            else
+            {
+                Destroy(Object.GetComponent<ARAnchor>());
+                Object.transform.position = Hits[0].pose.position;
+                Object.AddComponent<ARAnchor>();
+            }
+        }
     }
 
     public void ActivePlanes(bool set) // active or deactive all ar planes used by ui function class
