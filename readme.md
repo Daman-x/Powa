@@ -10,4 +10,4 @@ project includes
  dynamic images list
  able to add glb models
 
-// todo optimaztion
+ ui is being adding... in process

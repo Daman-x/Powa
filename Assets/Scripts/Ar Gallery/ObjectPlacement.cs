@@ -53,10 +53,15 @@ public class ObjectPlacement : MonoBehaviour
             if (Object == null)
             {
                 Object = Instantiate(Marker, Hits[0].pose.position, Hits[0].pose.rotation);
+
+                if (Object.GetComponent<ARAnchor>() == null)
+                    Object.AddComponent<ARAnchor>();
             }
             else
             {
+                Destroy(Object.GetComponent<ARAnchor>());
                 Object.transform.position = Hits[0].pose.position;
+                Object.AddComponent<ARAnchor>();
             }
         }
     }
@@ -64,6 +69,7 @@ public class ObjectPlacement : MonoBehaviour
     public void ActivePlanes(bool set) // active or deactive all ar planes used by ui function class
     {
         planeManager.enabled = set;
+        raycastManager.enabled = set;
         foreach (var plane in planeManager.trackables)
         {
             plane.gameObject.SetActive(set);

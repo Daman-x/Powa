@@ -1,28 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 // This script update image on the frame
 public class UpdateImage : MonoBehaviour
 {
     [SerializeField]
-    SpriteRenderer TargetImage;
+    public SpriteRenderer TargetImage;
 
-    AddingItems addingItems;
-   
+
     private void Start()
     {
-        addingItems = GameObject.Find("Content").GetComponent<AddingItems>();
-        TargetImage.sprite = addingItems.selectedimg;
+        GameObject.Find("SelectedOne").GetComponent<ScaleImage>().UpdateImg = this;
     }
 
-    private void Update() // update the frame image
+    public void ChangeImages(Sprite img) // update the frame image
     {
-        if (addingItems.selectedimg == TargetImage) // this update will be change in the future for optimzation
+        if (img == TargetImage) // this update will be change img on model
             return;
       
 
-        TargetImage.sprite = addingItems.selectedimg;
+        TargetImage.sprite = img;
     }
 }
