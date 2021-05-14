@@ -11,6 +11,8 @@ namespace Assets.Scripts.Libs.Models
     public class User
     {
         public string name;
+        public string email;
+        public string walletAddress;
         public string url;
         public string twitter;
         public string instagram;
