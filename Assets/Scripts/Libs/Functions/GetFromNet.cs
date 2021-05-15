@@ -24,7 +24,7 @@ namespace Assets.Scripts.Libs.Functions
 
             yield return www.SendWebRequest();
 
-            if (www.isHttpError || www.isNetworkError)
+            if (www.result == UnityWebRequest.Result.ProtocolError)
             {
                 UnityEngine.Debug.Log("Error while Receiving: " + www.error);
             }
