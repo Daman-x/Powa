@@ -36,16 +36,22 @@ public class ObjectPlacement : MonoBehaviour
         InitApp _app = new InitApp();
         _app.init();
 
-        //for (int i = 0; i < AppData._registries.Length; i++)
-        //{
-        //    Debug.Log("rrrrrr   " + AppData._registries[i].name + " - " + AppData._registries[i].symbol);
-        //}
+        for (int i = 0; i < AppData._registries.Length; i++)
+        {
+            Debug.Log("rrrrrr   " + AppData._registries[i].name + " - " + AppData._registries[i].symbol);
+        }
 
         Debug.Log("-------------------------ITEMS------------------------");
 
         for (int i = 0; i < AppData._items.Length; i++)
         {
             Debug.Log(AppData._items[i].name + " - " + AppData._items[i].user.name);
+        }
+        Debug.Log("-------------------------Artists------------------------");
+
+        for (int i = 0; i < AppData._artists.Length; i++)
+        {
+            Debug.Log(AppData._artists[i].email + " - " + AppData._artists[i].user.name);
         }
 
         //for (int i = 0; i < 3; i++)
