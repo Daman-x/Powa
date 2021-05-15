@@ -12,12 +12,18 @@ using Assets.Scripts.Libs.Functions;
 
 namespace Assets.Scripts.Libs.AppManager
 {
-    public class InitApp
+    public class InitApp : MonoBehaviour
     {
+        void start()
+        {
+            init();
+        }
+
         public void init()
         {
-            //getAllRegistry();
+            getAllRegistry();
             getAllItem();
+            getAllArtist();
         }
 
         public void getAllRegistry()
@@ -32,7 +38,13 @@ namespace Assets.Scripts.Libs.AppManager
             string response = GetFromNet.GetApiData("token/getNewItems?limit=100&id=0");
             ItemData data1 = JsonUtility.FromJson<ItemData>("{\"data\":" + response + "}");
             AppData._items= data1.data;
+        }
 
+        public void getAllArtist()
+        {
+            string response = GetFromNet.GetApiData("artist/get");
+            ArtistData data1 = JsonUtility.FromJson<ArtistData>("{\"data\":" + response + "}");
+            AppData._artists = data1.data;
         }
     }
 }

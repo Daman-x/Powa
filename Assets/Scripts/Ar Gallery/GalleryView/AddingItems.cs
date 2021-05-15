@@ -16,7 +16,8 @@ public class AddingItems : MonoBehaviour
     private void Start()
     {
         container = this.gameObject; // target this gameobject to be the parent object
-    //    AddingImagesToList();
+                                     //    AddingImagesToList();
+        Debug.Log("Here is adding items");
         AddingImages();
     }
 
