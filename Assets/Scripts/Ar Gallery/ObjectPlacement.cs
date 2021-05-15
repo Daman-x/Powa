@@ -33,32 +33,6 @@ public class ObjectPlacement : MonoBehaviour
 
     void Start()
     {
-        InitApp _app = new InitApp();
-        _app.init();
-
-        for (int i = 0; i < AppData._registries.Length; i++)
-        {
-            Debug.Log("rrrrrr   " + AppData._registries[i].name + " - " + AppData._registries[i].symbol);
-        }
-
-        Debug.Log("-------------------------ITEMS------------------------");
-
-        for (int i = 0; i < AppData._items.Length; i++)
-        {
-            Debug.Log(AppData._items[i].name + " - " + AppData._items[i].user.name);
-        }
-        Debug.Log("-------------------------Artists------------------------");
-
-        for (int i = 0; i < AppData._artists.Length; i++)
-        {
-            Debug.Log(AppData._artists[i].email + " - " + AppData._artists[i].user.name);
-        }
-
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    StartCoroutine(GetFromNet.downloadImage("https://storageapi.fleek.co/citizenfinance-team-bucket/cifipowa.app/" + data1.data[i].metaUrl + "-image", imageToUpdate[i]));
-        //    Debug.Log("i = " + i);
-        //}
     }
 
     public bool placed  // get set for placed
