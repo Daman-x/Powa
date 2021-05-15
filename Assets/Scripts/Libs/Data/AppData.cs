@@ -16,6 +16,7 @@ namespace Assets.Scripts.Libs.Data
 
         public static Item[] _items;
         public static Registry[] _registries;
+        public static Artist[] _artists;
         public static User _me;
     }
 }
