@@ -13,7 +13,7 @@ public class SplashScreen : MonoBehaviour
     IEnumerator loadScene()
     {
         
-        AsyncOperation scene = SceneManager.LoadSceneAsync("Menu Scene");
+        AsyncOperation scene = SceneManager.LoadSceneAsync("Home");
         scene.allowSceneActivation = false;
 
         while (!scene.isDone)
