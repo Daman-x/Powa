@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// THIS SCRIPT MANAGES SPLASH SCREEN AND LOAD LOGIN SCREEN AFTER SPLASH SCREEN
 public class SplashScreen : MonoBehaviour
 {
     private void Start()
@@ -13,7 +14,7 @@ public class SplashScreen : MonoBehaviour
     IEnumerator loadScene()
     {
         
-        AsyncOperation scene = SceneManager.LoadSceneAsync("Menu Scene");
+        AsyncOperation scene = SceneManager.LoadSceneAsync("LoginScreen");
         scene.allowSceneActivation = false;
 
         while (!scene.isDone)

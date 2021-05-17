@@ -37,7 +37,7 @@ namespace Assets.Scripts.Libs.Functions
                 Sprite sprite = null;
                 sprite = Sprite.Create(texture2d, new Rect(0, 0, texture2d.width, texture2d.height), Vector2.zero);
 
-                if (sprite != null && imageToUpdate != null)
+                if (sprite != null)
                 {
                     imageToUpdate.sprite = sprite;
                 }
