@@ -50,7 +50,7 @@ public class ShowData : MonoBehaviour
                 card.transform.SetParent(ScrollView.transform, false);
                 Text[] txt = card.GetComponentsInChildren<Text>();
                 txt[0].text = AppData._registries[i].name;
-                txt[1].text = AppData._registries[i].symbol;
+                //txt[1].text = AppData._registries[i].symbol;
                 //   card.GetComponent<Image>().sprite = ;
                 StartCoroutine(GetFromNet.downloadImage(AppData.IPFSUrl + AppData._registries[i].url, card.GetComponent<Image>()));
                 card.transform.SetParent(ScrollView.transform, false);
@@ -74,7 +74,7 @@ public class ShowData : MonoBehaviour
                 card.transform.SetParent(ScrollView.transform, false);
                 Text[] txt = card.GetComponentsInChildren<Text>();
                 txt[0].text = AppData._items[i].name;
-                txt[1].text = AppData._items[i].user.name;
+                //txt[1].text = AppData._items[i].user.name;
                 //   card.GetComponent<Image>().sprite = ;
                 StartCoroutine(GetFromNet.downloadImage(AppData.IPFSUrl + AppData._items[i].metaUrl + "-image", card.GetComponent<Image>()));
                 card.transform.SetParent(ScrollView.transform, false);
