@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackbtnFunctionOverride : MonoBehaviour
 {
-    public GameObject mainmenu, discover;
+    public GameObject mainmenu, discover , singleRegistry , blogs;
 
 
     private void Update()
@@ -24,7 +24,19 @@ public class BackbtnFunctionOverride : MonoBehaviour
                 return;
             }
 
+            if (Input.GetKey(KeyCode.Escape) && singleRegistry.activeSelf == true)
+            {
+                singleRegistry.SetActive(false);
+                mainmenu.SetActive(true);
+                return;
+            }
 
+            if (Input.GetKey(KeyCode.Escape) && blogs.activeSelf == true)
+            {
+                blogs.SetActive(false);
+                mainmenu.SetActive(true);
+                return;
+            }
 
         }
     }
