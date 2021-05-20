@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIMethods : MonoBehaviour
 {
-    public Canvas mainmenu, discover , singleRegistry , blogs;
+    public Canvas mainmenu, discover;
 
 
     private void Start()
@@ -17,17 +17,4 @@ public class UIMethods : MonoBehaviour
         mainmenu.gameObject.SetActive(false);
         discover.gameObject.SetActive(true);
     }
-
-    public void OnClickRegisteries()
-    {
-        mainmenu.gameObject.SetActive(false);
-        singleRegistry.gameObject.SetActive(true);
-    }
-
-    public void OnClickBlogs()
-    {
-        mainmenu.gameObject.SetActive(false);
-        blogs.gameObject.SetActive(true);
-    }
-
 }
