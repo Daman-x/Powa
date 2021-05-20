@@ -20,17 +20,17 @@ public class ShowData : MonoBehaviour
     public GameObject ScrollView;
 
     public GameObject Item; //This is the item prefab model
-    public Text _text;
 
+    private static InitApp _app;
 
     void Start()
     {
-        InitApp _app = new InitApp();
-        _app.init();
+        _app = new InitApp();
+        //_app.init();
         ShowRegistry();
         //Calls the TaskOnClick/TaskWithParameters/ButtonClicked method when you click the Button
         m_RegistryButton.onClick.AddListener(ShowRegistry);
-        m_ItemButton.onClick.AddListener(delegate {TaskWithParameters("Hello"); });
+        m_ItemButton.onClick.AddListener(delegate { ShowItem("Hello"); });
 
     }
 
@@ -38,52 +38,59 @@ public class ShowData : MonoBehaviour
     {
         //Output this to console when Button1 or Button3 is clicked
         Debug.Log("You have clicked the registry button!");
-
+        clearScrollView();
+        _app.getAllRegistry();
         //GameObject obj;
         for (int i = 0; i < AppData._registries.Length; i++)
         {
             GameObject card = Instantiate(Item) as GameObject;
-            //Text txt = Item.GetComponent<Text>();
-            //Debug.Log("txt = " + txt.text);
-            //if (txt != null)
-            //{
-            //    Debug.Log("txt = " + txt.text);
-            //}
-            //card.GetComponent<Text>().text = AppData._registries[i].name;
 
             if (ScrollView != null)
             {
                 card.transform.SetParent(ScrollView.transform, false);
-            //    Text [] txt = card.GetComponentsInChildren<Text>();
-            //    txt[0].text = "reguster";
-           //     txt[1].text = "Japan";
-            //    card.GetComponent<Image>().sprite = ;
-
+                Text[] txt = card.GetComponentsInChildren<Text>();
+                txt[0].text = AppData._registries[i].name;
+                //txt[1].text = AppData._registries[i].symbol;
+                //   card.GetComponent<Image>().sprite = ;
+                StartCoroutine(GetFromNet.downloadImage(AppData.IPFSUrl + AppData._registries[i].url, card.GetComponent<Image>()));
+                card.transform.SetParent(ScrollView.transform, false);
             }
-            //Debug.Log("rrrrrr   " + AppData._registries[i].name + " - " + AppData._registries[i].symbol + " , text = " + Item.GetComponent<Text>().text);
-            //ItemGameObject is my prefab pointer that i previous made a public property  
-            //and  assigned a prefab to it
-            //GameObject obj = Instantiate(Item) as GameObject;
-            //obj.GetComponent<Text>().text = AppData._registries[i].name;
-            //Debug.Log("text = " + Item.text);
-            //GameObject card = Instantiate(ScrollView) as GameObject;
-
-
-            //scroll = GameObject.Find("CardScroll");
-            //if (ScrollView != null)
-            //{
-            //    card.transform.SetParent(ScrollView.transform, false);
-            //}
         }
     }
 
-    void TaskWithParameters(string message)
+    void ShowItem(string message)
     {
         //Output this to console when the Button2 is clicked
         Debug.Log(message);
+        clearScrollView();
+        _app.getAllItem();
+
+        for (int i = 0; i < AppData._items.Length; i++)
+        {
+            GameObject card = Instantiate(Item) as GameObject;
+
+            if (ScrollView != null)
+            {
+                card.transform.SetParent(ScrollView.transform, false);
+                Text[] txt = card.GetComponentsInChildren<Text>();
+                txt[0].text = AppData._items[i].name;
+                //txt[1].text = AppData._items[i].user.name;
+                //   card.GetComponent<Image>().sprite = ;
+                StartCoroutine(GetFromNet.downloadImage(AppData.IPFSUrl + AppData._items[i].metaUrl + "-image", card.GetComponent<Image>()));
+                card.transform.SetParent(ScrollView.transform, false);
+            }
+        }
     }
 
-    void ButtonClicked(int buttonNo)
+    void clearScrollView()
+    {
+        foreach (Transform child in ScrollView.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    void ShowItem(int buttonNo)
     {
         //Output this to console when the Button3 is clicked
         Debug.Log("Button clicked = " + buttonNo);
