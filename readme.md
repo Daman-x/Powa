@@ -7,8 +7,8 @@ project includes
  art gallery
  treasure hunt
  splash screen
- walkthrough (new)
- login screen (new) 
+ walkthrough 
+ login screen  
  dynamic images list
  able to add glb models
 
