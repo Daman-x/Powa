@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.SceneManagement;
 
 
 // THIS SCRIPT HAVE ALL THE UI FUNCTIONS ON THE SCENE
@@ -11,76 +13,53 @@ public class UIFunctions : MonoBehaviour
     [SerializeField]
     Text txt;         // toast txt
     [SerializeField]
-    GameObject PlaceBtn; // invisble btn on screen to place object
-    [SerializeField]
-    Image ImgOnLike;
-    [SerializeField]
-    Sprite ImgToChange;
+    GameObject PlaceBtn, remove; // invisble btn on screen to place object
 
+    private Animation anim;
     private ObjectPlacement objectPlacement; // objectplacement class reference
-    private GameObject Canvas;
-    public GameObject Options;
-    private GameObject UIOptions;
-
-    private bool Isclose = true; // options panel open or not
+ 
 
     private void Start() // run as scene starts once only
     {
-        Canvas = GameObject.Find("Canvas");
-        UIOptions = Canvas.transform.Find("UIOptions").gameObject;
         objectPlacement = GameObject.Find("AR Session Origin").GetComponent<ObjectPlacement>(); // gather all components
+        anim = GetComponent<Animation>();
         PlaceBtn.SetActive(true);
     }
 
     #region side panel functions
 
-    public void OnOptionsClicked() // when small icon on side of the screen is  -- open the panels of other options ike remove etc.
-    {
-       
-        if(Isclose)
-        {
-          
-            UIOptions.SetActive(true);
-            Options.transform.position = new Vector3(Options.transform.position.x + 310f, Options.transform.position.y, 0f);
-            Isclose = false;
-        }
-        else
-        {
-            UIOptions.SetActive(false);
-            Options.transform.position = new Vector3(Options.transform.position.x - 310f, Options.transform.position.y, 0f);
-            Isclose = true;
-        }
-       
-    }
-
+  
 
     public void OnClickPlaceButton() // when touch on the screen to place the object
     {
         if (objectPlacement.placed == false)
         {
+
+            if (objectPlacement.prefab.GetComponent<ARAnchor>() == null)
+                objectPlacement.prefab.AddComponent<ARAnchor>();
+
+
+
             objectPlacement.placed = true;
             objectPlacement.ActivePlanes(false);
             PlaceBtn.SetActive(false);
+            remove.SetActive(true);
             objectPlacement.enabled = false;
         }
     }
 
     public void OnRemove() // when reomve button is clicked removes object on scene
     {
-        if (objectPlacement.remove && objectPlacement.placed == true)
+        if (objectPlacement.placed == true)
         {
-            Destroy(objectPlacement.prefabs);
-            objectPlacement.ActivePlanes(false);
-            objectPlacement.remove = false;
-            objectPlacement.placed = false;
-        }
-        else if (!objectPlacement.remove) // if clicked again
-        {
-            objectPlacement.ActivePlanes(true);
-            objectPlacement.remove = true;
-            PlaceBtn.SetActive(true);
+            Destroy(objectPlacement.prefab);
             objectPlacement.enabled = true;
+            objectPlacement.ActivePlanes(true);
+            objectPlacement.placed = false;
+            PlaceBtn.SetActive(true);
+            remove.SetActive(false);
         }
+      
 
     }
 
@@ -95,11 +74,19 @@ public class UIFunctions : MonoBehaviour
 
     public void OnLikeClicked() // if like btn is clicked
     {
-        ImgOnLike.sprite = ImgToChange;
-
+        anim.Play("Liked");
         // store that on server
     }
 
+    public void OnMediaClicked()
+    {
+        anim.Play("Media");
+    }
+
+    public void OnClickBack()
+    {
+        SceneManager.LoadScene("Home", LoadSceneMode.Single);
+    }
 
     void showToast(string text,int duration) // show toast at bottom of the scene currently not visible
     {

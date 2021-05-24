@@ -29,7 +29,6 @@ public class ObjectPlacement : MonoBehaviour
 
     bool Placed = false;  // if object placed
     GameObject Object; // reference to the main object for object to relocate
-    bool RemoveClicked = true; // if remove btn is clicked
 
     void Start()
     {
@@ -66,13 +65,8 @@ public class ObjectPlacement : MonoBehaviour
         get { return Placed; }
         set { Placed = value; }
     }
-    public bool remove //get set for remove variable
-    {
-        get { return RemoveClicked; }
-        set { RemoveClicked = value; }
-    }
 
-    public GameObject prefabs // return object prefabs/gameobject
+    public GameObject prefab // return object prefabs/gameobject
     {
         get { return Object; }
     }
@@ -86,21 +80,17 @@ public class ObjectPlacement : MonoBehaviour
     {
 
         Ray ray = Camera.current.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); // shoot ray from the center of the screen
-        if (raycastManager.Raycast(ray, Hits, TrackableType.PlaneWithinPolygon) && Placed == false && RemoveClicked == true)  // if hit any ar plane
+        if (raycastManager.Raycast(ray, Hits, TrackableType.PlaneWithinPolygon) && Placed == false)  // if hit any ar plane
         {
 
             if (Object == null)
             {
                 Object = Instantiate(Marker, Hits[0].pose.position, Hits[0].pose.rotation);
 
-                if (Object.GetComponent<ARAnchor>() == null)
-                    Object.AddComponent<ARAnchor>();
             }
             else
             {
-                Destroy(Object.GetComponent<ARAnchor>());
                 Object.transform.position = Hits[0].pose.position;
-                Object.AddComponent<ARAnchor>();
             }
         }
     }
