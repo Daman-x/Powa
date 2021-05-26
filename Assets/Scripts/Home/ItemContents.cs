@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// on any item clicked this script will be called
+
 public class ItemContents : MonoBehaviour
 {
 

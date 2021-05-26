@@ -13,11 +13,12 @@ public class UIFunctions : MonoBehaviour
     [SerializeField]
     Text txt;         // toast txt
     [SerializeField]
-    GameObject PlaceBtn, remove; // invisble btn on screen to place object
+    GameObject PlaceBtn, remove , media; // invisble btn on screen to place object
 
     private Animation anim;
     private ObjectPlacement objectPlacement; // objectplacement class reference
- 
+
+    private bool pressed = false;
 
     private void Start() // run as scene starts once only
     {
@@ -80,7 +81,15 @@ public class UIFunctions : MonoBehaviour
 
     public void OnMediaClicked()
     {
-        anim.Play("Media");
+        if(!pressed)
+        {
+            anim.Play("Media");
+            pressed = true;
+            return;
+        }
+
+        anim.Play("RevMedia");
+        pressed = false;
     }
 
     public void OnClickBack()
