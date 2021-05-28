@@ -12,4 +12,5 @@ project includes
  dynamic images list
  able to add glb models
 
- ui is being adding... in process
+ ui is being adding
+ registries added

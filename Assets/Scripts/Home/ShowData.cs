@@ -52,7 +52,7 @@ public class ShowData : MonoBehaviour
                 txt[0].text = AppData._registries[i].name;
                 //txt[1].text = AppData._registries[i].symbol;
                 //   card.GetComponent<Image>().sprite = ;
-                StartCoroutine(GetFromNet.downloadImage(AppData.IPFSUrl + AppData._registries[i].url, card.GetComponent<Image>()));
+            //    StartCoroutine(GetFromNet.downloadImage(AppData.IPFSUrl + AppData._registries[i].url, card.GetComponent<Image>()));
                 card.transform.SetParent(ScrollView.transform, false);
             }
         }

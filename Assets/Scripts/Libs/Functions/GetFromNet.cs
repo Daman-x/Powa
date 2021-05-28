@@ -46,7 +46,7 @@ namespace Assets.Scripts.Libs.Functions
 
         public static string GetApiData(string uri)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(AppData.apiDomain + uri);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string jsonResponse = reader.ReadToEnd();

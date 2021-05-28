@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using backend.Services;
+using Assets.Scripts.Libs.Models;
 public class FetchData : MonoBehaviour
 {
     [SerializeField]
@@ -9,6 +10,10 @@ public class FetchData : MonoBehaviour
 
     [SerializeField]
     GameObject HomeRegistryContent , HomeItemContent, HomeBlogContent , DiscoverContent , mainBlogContent;
+
+    Registry[] data;
+
+    Backend obj = new Backend();
 
     public void AddItemsOnHome() 
     {
@@ -21,6 +26,18 @@ public class FetchData : MonoBehaviour
     {
         HomeRegistryContent.SetActive(true);
         HomeItemContent.SetActive(false);
+
+        if (HomeRegistryContent.transform.childCount < 5 )
+        {   
+            data = obj.ShowRegistries("5");
+
+            foreach (Registry i in data)
+            {
+                GameObject gameobj = Instantiate(Registry) as GameObject;
+                gameobj.GetComponent<RegistryContents>().getData(i.id, i.name, i.owner, i.mint, obj.Ipfsurl + i.url);
+                gameobj.transform.SetParent(HomeRegistryContent.transform, false);
+            }
+        }
         // add registry prefab in home registry content upto 10 only
     }
 
@@ -37,4 +54,5 @@ public class FetchData : MonoBehaviour
     {
         // add discover prefabs on discovercontent  there are 3 prefabs which are basically nested items and registry prefabs
     }
+
 }

@@ -10,6 +10,9 @@ namespace Assets.Scripts.Libs.Models
     [Serializable]
     public class Registry
     {
+        public int id;
+        public int mint;
+        public string owner;
         public string name;
         public string symbol;
         public string url;
