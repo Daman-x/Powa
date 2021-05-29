@@ -20,17 +20,31 @@ namespace backend.Services
             get { return IPFSUrl; }
         }
  
-      public Registry [] ShowRegistries(string number)
+      public Gallery [] ShowGalleries(string number)
         {
             if(number == "all" || number == "ALL")
             {
-                RegistryData data1 = JsonUtility.FromJson<RegistryData>("{\"data\":" + GetApiData(apidomain + "registry") + "}");
+                GalleryData data1 = JsonUtility.FromJson<GalleryData>("{\"data\":" + GetApiData(apidomain + "registry") + "}");
                 return data1.data;
             }
             else
             {
 
-                RegistryData data1 = JsonUtility.FromJson<RegistryData>("{\"data\":" + GetApiData(apidomain + "registry" + "/getLatest/" + number) + "}");
+                GalleryData data1 = JsonUtility.FromJson<GalleryData>("{\"data\":" + GetApiData(apidomain + "registry" + "/getLatest/" + number) + "}");
+                return data1.data;
+            }
+        }
+
+        public Item[] ShowItems(string number) //https://www.xapi.cifipowa.app/api/token/getTokens?limit=3
+        {
+            if (number == "all" || number == "ALL")
+            {
+                ItemData data1 = JsonUtility.FromJson<ItemData>("{\"data\":" + GetApiData(apidomain + "token/getTokens") + "}");
+                return data1.data;
+            }
+            else
+            {
+                ItemData data1 = JsonUtility.FromJson<ItemData>("{\"data\":" + GetApiData(apidomain + "token/getTokens?limit=" + number) + "}");
                 return data1.data;
             }
         }

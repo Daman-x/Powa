@@ -24,9 +24,9 @@ public class Login : MonoBehaviour
         // ON SUCCESFULL LOGIN
         //StartCoroutine(loadScene());
     }
-    void OnclickedGuestLogin() //ON GUEST BTN CLICKED
+    public void OnclickedGuestLogin() //ON GUEST BTN CLICKED
     {
-
+        SceneManager.LoadScene("Home");
     }
     void OnClickedSignup() // ON SIGN UP BTN CLICKED
     {

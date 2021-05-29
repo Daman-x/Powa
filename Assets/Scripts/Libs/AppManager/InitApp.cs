@@ -29,8 +29,8 @@ namespace Assets.Scripts.Libs.AppManager
         public void getAllRegistry()
         {
             string response = GetFromNet.GetApiData("registry");
-            RegistryData data1 = JsonUtility.FromJson<RegistryData>("{\"data\":" + response + "}");
-            AppData._registries = data1.data;
+          //  RegistryData data1 = JsonUtility.FromJson<RegistryData>("{\"data\":" + response + "}");
+         //   AppData._registries = data1.data;
         }
 
         public void getAllItem()

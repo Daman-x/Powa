@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class UIMethods : MonoBehaviour
 {
     public Canvas mainmenu, discover, Blogs;
-    public Text registrybtn, itembtn;
-
     public GameObject notavailpanel;
 
     [SerializeField]
@@ -16,8 +14,8 @@ public class UIMethods : MonoBehaviour
     private void Start()
     {
         mainmenu.gameObject.SetActive(true);
-        OnClickRegistry();
-        fetchData.AddBlogOnHome();
+        fetchData.AddGalleriesOnHome();
+        fetchData.AddItemsOnHome();
     }
     public void OnClickDiscover()
     {
@@ -31,23 +29,11 @@ public class UIMethods : MonoBehaviour
         Blogs.gameObject.SetActive(true);
         fetchData.AddBlogOnBlogPage();
     }
-
-    public void OnClickItems() // when item btn is clicked on home page 
+    public void OnClickHome()
     {
-
-        itembtn.color = Color.black;
-        registrybtn.color = Color.grey;
-
-        fetchData.AddItemsOnHome();
+        mainmenu.gameObject.SetActive(true);
+        discover.gameObject.SetActive(false);
     }
-    public void OnClickRegistry()
-    {
-        itembtn.color = Color.grey;
-        registrybtn.color = Color.black;
-
-        fetchData.AddRegistriesOnHome();
-    }
-
     public void OnclickClose()
     {
         notavailpanel.SetActive(false);

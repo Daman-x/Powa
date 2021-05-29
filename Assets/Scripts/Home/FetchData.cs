@@ -6,39 +6,35 @@ using Assets.Scripts.Libs.Models;
 public class FetchData : MonoBehaviour
 {
     [SerializeField]
-    GameObject Registry, Item, blog, itemgroup, item4registry1, registry1item2;
+    GameObject Galleryhome, galleryItem;
 
     [SerializeField]
-    GameObject HomeRegistryContent , HomeItemContent, HomeBlogContent , DiscoverContent , mainBlogContent;
-
-    Registry[] data;
+    GameObject GalleriesView, ItemsView;
 
     Backend obj = new Backend();
 
     public void AddItemsOnHome() 
     {
-        HomeRegistryContent.SetActive(false);
-        HomeItemContent.SetActive(true);
-        // add item prefabs in home item content upto 10only
+        Item[] data = obj.ShowItems("5");
+
+        foreach (Item i in data)
+        {
+            GameObject gameobj = Instantiate(galleryItem) as GameObject;
+            gameobj.GetComponent<ItemContents>().getData(i.id ,obj.Ipfsurl + i.metaUrl + "-image", obj.Ipfsurl + i.owner + "-avatar" , i.name , i.user.name ,"" ,i.favourite , (int) Random.Range(1,10000));
+            gameobj.transform.SetParent(ItemsView.transform, false);
+        }
     }
 
-    public void AddRegistriesOnHome()
-    {
-        HomeRegistryContent.SetActive(true);
-        HomeItemContent.SetActive(false);
+    public void AddGalleriesOnHome()
+    { 
+          Gallery[] data = obj.ShowGalleries("5");
 
-        if (HomeRegistryContent.transform.childCount < 5 )
-        {   
-            data = obj.ShowRegistries("5");
-
-            foreach (Registry i in data)
+            foreach (Gallery i in data)
             {
-                GameObject gameobj = Instantiate(Registry) as GameObject;
-                gameobj.GetComponent<RegistryContents>().getData(i.id, i.name, i.owner, i.mint, obj.Ipfsurl + i.url);
-                gameobj.transform.SetParent(HomeRegistryContent.transform, false);
+                GameObject gameobj = Instantiate(Galleryhome) as GameObject;
+                gameobj.GetComponent<GalleryContents>().getData(i.id , i.name , obj.Ipfsurl+i.url);   
+                gameobj.transform.SetParent(GalleriesView.transform, false);
             }
-        }
-        // add registry prefab in home registry content upto 10 only
     }
 
     public void AddBlogOnHome()

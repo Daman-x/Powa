@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 // When any registry is clicked this script will call on 
-public class RegistryContents : MonoBehaviour
+public class GalleryContents : MonoBehaviour
 {
 
     private int id;
@@ -13,28 +13,16 @@ public class RegistryContents : MonoBehaviour
     private Image sprite;
     [SerializeField]
     private Text name;
-
-    private string Url;
-    [SerializeField]
-    private Text Ownername;
-    [SerializeField]
-    private Image Ownersprite;
-    [SerializeField]
-    private Text mint;
-
+  
     public void OnClickRegistry()
     {
-        // this.transform.root.gameObject.SetActive(false);
         GameObject.Find("Single Registry page").GetComponent<Canvas>().enabled = true;
     }
 
-    public void getData(int id = -1 , string name = "" , string owner = "" , int mint = 0 , string URL = "")
+    public void getData(int id = -1 , string name = "" , string URL = "")
     {
         this.id = id;
         this.name.text = name;
-        this.Ownername.text = owner;
-        this.mint.text = mint.ToString();
-        this.Url = URL;
         StartCoroutine(downloadImage(URL));
     }
 

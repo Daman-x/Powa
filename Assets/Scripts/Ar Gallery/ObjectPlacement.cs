@@ -23,6 +23,9 @@ public class ObjectPlacement : MonoBehaviour
     [SerializeField]
     GameObject Marker; // change this inorder to change the object spawning
 
+    public static Sprite img;
+
+    public SpriteRenderer[] Images;
     ARRaycastManager raycastManager;
     ARPlaneManager planeManager;
     List<ARRaycastHit> Hits = new List<ARRaycastHit>();
@@ -32,7 +35,7 @@ public class ObjectPlacement : MonoBehaviour
 
     void Start()
     {
-        InitApp _app = new InitApp();
+       /* InitApp _app = new InitApp();
         _app.init();
 
         for (int i = 0; i < AppData._registries.Length; i++)
@@ -53,11 +56,12 @@ public class ObjectPlacement : MonoBehaviour
             Debug.Log(AppData._artists[i].email + " - " + AppData._artists[i].user.name);
         }
 
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    StartCoroutine(GetFromNet.downloadImage("https://storageapi.fleek.co/citizenfinance-team-bucket/cifipowa.app/" + data1.data[i].metaUrl + "-image", imageToUpdate[i]));
-        //    Debug.Log("i = " + i);
-        //}
+        for (int i = 0; i < 3; i++)
+        {
+           StartCoroutine(GetFromNet.downloadImage("https://storageapi.fleek.co/citizenfinance-team-bucket/cifipowa.app/" + data1.data[i].metaUrl + "-image", imageToUpdate[i]));
+            Debug.Log("i = " + i);
+        }
+       */
     }
 
     public bool placed  // get set for placed
@@ -86,6 +90,8 @@ public class ObjectPlacement : MonoBehaviour
             if (Object == null)
             {
                 Object = Instantiate(Marker, Hits[0].pose.position, Hits[0].pose.rotation);
+                Images = Object.GetComponentsInChildren<SpriteRenderer>();
+                Images[1].sprite = img;
 
             }
             else

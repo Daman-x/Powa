@@ -3,12 +3,13 @@ using System.Collections;
 
 using System;
 using System.IO;
+using Assets.Scripts.Libs.Models;
 
 namespace Assets.Scripts.Libs.Models
 {
 
     [Serializable]
-    public class Registry
+    public class Gallery
     {
         public int id;
         public int mint;
@@ -16,12 +17,13 @@ namespace Assets.Scripts.Libs.Models
         public string name;
         public string symbol;
         public string url;
+        public User user;
     }
 
 
     [Serializable]
-    public class RegistryData
+    public class GalleryData
     {
-        public Registry[] data;
+        public Gallery[] data;
     }
 }

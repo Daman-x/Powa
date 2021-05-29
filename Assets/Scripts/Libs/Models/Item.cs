@@ -19,7 +19,7 @@ namespace Assets.Scripts.Libs.Models
         public string metaUrl;
         public int favourite;
         public User user;
-        public Registry reg;
+        public Gallery gallery;
     }
 
     [Serializable]
