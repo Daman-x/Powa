@@ -8,32 +8,29 @@ public class Login : MonoBehaviour
 {
     private InputField email;  // EMAIL FIELD
     private InputField password; // PASSWORD
-
+    public Animation anim;
+    public GameObject root;
     private void Start()
     {
-        email = GameObject.Find("Email").GetComponent<InputField>();
-        password = GameObject.Find("Password").GetComponent<InputField>();
+      //  email = GameObject.Find("Email").GetComponent<InputField>();
+    //    password = GameObject.Find("Password").GetComponent<InputField>();
     }
 
-    void OnClickLogin() // ON LOGIN BTN CLICKED
+    public void OnClickLogin() // ON LOGIN BTN CLICKED
     {
-        string passwordtxt = password.text; // GET PASSWORD
-        string emailtxt = email.text; // GET EMAIL
-
-
+        //  string passwordtxt = password.text; // GET PASSWORD
+        //  string emailtxt = email.text; // GET EMAIL
+        anim.Play("Loading");
         // ON SUCCESFULL LOGIN
-        //StartCoroutine(loadScene());
-    }
-    public void OnclickedGuestLogin() //ON GUEST BTN CLICKED
-    {
-        SceneManager.LoadScene("Home");
-    }
+        StartCoroutine(loadScene());
+        
+    }  
     void OnClickedSignup() // ON SIGN UP BTN CLICKED
     {
         // redirect to website sign up 
     }
 
-  /*  IEnumerator loadScene()
+    IEnumerator loadScene()
     {
 
         AsyncOperation scene = SceneManager.LoadSceneAsync("Home");
@@ -41,7 +38,14 @@ public class Login : MonoBehaviour
 
         while (!scene.isDone)
         {
-            scene.allowSceneActivation = true;
+            
+            if(scene.progress == 0.9f)
+            {
+               
+                yield return new WaitForSeconds(3f);
+                scene.allowSceneActivation = true;
+            }
+
         }
-    }*/
+    }
 }

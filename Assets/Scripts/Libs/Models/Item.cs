@@ -17,9 +17,11 @@ namespace Assets.Scripts.Libs.Models
         public int tokenId;
         public string name;
         public string metaUrl;
+        public string imgType;
         public int favourite;
+        public string description;
         public User user;
-        public Gallery gallery;
+        public Gallery reg;
     }
 
     [Serializable]
@@ -27,5 +29,4 @@ namespace Assets.Scripts.Libs.Models
     {
         public Item[] data;
     }
-
 }

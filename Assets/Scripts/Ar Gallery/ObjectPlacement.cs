@@ -10,10 +10,8 @@ using UnityEngine.XR.ARSubsystems;
 using System;
 using System.IO;
 
-using Assets.Scripts.Libs.Data;
 using Assets.Scripts.Libs.Models;
-using Assets.Scripts.Libs.Functions;
-using Assets.Scripts.Libs.AppManager;
+
 
 [RequireComponent(typeof(ARRaycastManager))]
 [RequireComponent(typeof(ARPlaneManager))]
