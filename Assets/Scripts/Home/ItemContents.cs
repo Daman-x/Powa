@@ -29,19 +29,4 @@ public class ItemContents : MonoBehaviour
         this.comments.text =  comments > 0 ? comments.ToString() + " comments" : "Be first to Comment";
     }
 
-    public void OnClickAR()
-    {
-        ObjectPlacement.img = this.main_image.sprite;
-        SceneManager.LoadScene("ARScene");       
-    }
-
-
-    private void OnBecameInvisible()
-    {
-        this.gameObject.SetActive(false);
-    }
-    private void OnBecameVisible()
-    {
-        this.gameObject.SetActive(true);
-    }
 }
